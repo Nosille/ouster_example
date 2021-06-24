@@ -29,6 +29,9 @@
     <remap from="~/imu_packets" to="/os_node/imu_packets"/>
     <param name="~/tf_prefix" value="$(arg tf_prefix)"/>
 
+    <param name="use_ros_time"                    value="false"/>
+    <param name="timestamp_offset"                value="0.0"/>
+
     <!-- Filter out objects near sensor - Used to remove robot from cloud -->
     <param name="filter_min_x"                    value="-0.0"/>
     <param name="filter_max_x"                    value="+0.0"/>
