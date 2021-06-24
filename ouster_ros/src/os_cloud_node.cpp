@@ -37,6 +37,7 @@ int main(int argc, char** argv) {
 
     ouster_ros::Filter filter;
     int ts_offset;
+    bool use_ros_time;
     nh.param<float>("filter_min_x", filter.minX, -0.0);
     nh.param<float>("filter_max_x", filter.maxX, +0.0); 
     nh.param<float>("filter_min_y", filter.minY, -0.0); 
@@ -44,7 +45,8 @@ int main(int argc, char** argv) {
     nh.param<float>("filter_min_z", filter.minZ, -0.0); 
     nh.param<float>("filter_max_z", filter.maxZ, +0.0);
 
-    nh.param<int>("timestamp_offset", ts_offset, 0.0); 
+    nh.param<bool>("use_ros_time", use_ros_time, false); 
+    nh.param<int>("timestamp_offset", ts_offset, 0); 
 
     ouster_ros::OSConfigSrv cfg{};
     auto client = nh.serviceClient<ouster_ros::OSConfigSrv>("os_config");
@@ -80,7 +82,8 @@ int main(int argc, char** argv) {
                 scan_to_cloud(xyz_lut, h->timestamp, ls, cloud, filter);
                 //add offset to timestamp
                 std::chrono::nanoseconds timestamp, offset;
-                timestamp = h->timestamp;            
+                timestamp = h->timestamp;
+                if(use_ros_time)  timestamp = std::chrono::nanoseconds(ros::Time::now().toNSec());            
                 offset = std::chrono::milliseconds{ts_offset}; 
                 timestamp += offset;
 
