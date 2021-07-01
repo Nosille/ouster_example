@@ -53,6 +53,7 @@ std::shared_ptr<client> init_client(const std::string& hostname,
                                     lidar_mode mode = MODE_UNSPEC,
                                     timestamp_mode ts_mode = TIME_FROM_UNSPEC,
                                     std::string phase_lock_enable = "false",
+                                    std::string phase_lock_offset = "0",
                                     int lidar_port = 0, int imu_port = 0,
                                     int timeout_sec = 60);
 
