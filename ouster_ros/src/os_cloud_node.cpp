@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
     nh.param<float>("filter_max_z", filter.maxZ, +0.0); ROS_INFO_STREAM("filter_max_z=" << filter.maxZ);
 
     nh.param<bool>("use_ros_time", use_ros_time, false); ROS_INFO_STREAM("use_ros_time=" << use_ros_time);
-    nh.param<int>("timestamp_offset", ts_offset, 0); 
+    nh.param<int>("timestamp_offset", ts_offset, 0);  ROS_INFO_STREAM("timestamp_offset=" << ts_offset);
 
     ouster_ros::OSConfigSrv cfg{};
     auto client = nh.serviceClient<ouster_ros::OSConfigSrv>("os_config");
