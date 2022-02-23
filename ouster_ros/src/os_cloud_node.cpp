@@ -38,14 +38,14 @@ int main(int argc, char** argv) {
     ouster_ros::Filter filter;
     int ts_offset;
     bool use_ros_time;
-    nh.param<float>("filter_min_x", filter.minX, -0.0);
-    nh.param<float>("filter_max_x", filter.maxX, +0.0); 
-    nh.param<float>("filter_min_y", filter.minY, -0.0); 
-    nh.param<float>("filter_max_y", filter.maxY, +0.0); 
-    nh.param<float>("filter_min_z", filter.minZ, -0.0); 
-    nh.param<float>("filter_max_z", filter.maxZ, +0.0);
+    nh.param<float>("filter_min_x", filter.minX, -0.0); ROS_INFO_STREAM("filter_min_x=" << filter.minX);
+    nh.param<float>("filter_max_x", filter.maxX, +0.0); ROS_INFO_STREAM("filter_max_x=" << filter.maxX);
+    nh.param<float>("filter_min_y", filter.minY, -0.0); ROS_INFO_STREAM("filter_min_y=" << filter.minY);
+    nh.param<float>("filter_max_y", filter.maxY, +0.0); ROS_INFO_STREAM("filter_max_y=" << filter.maxY);
+    nh.param<float>("filter_min_z", filter.minZ, -0.0); ROS_INFO_STREAM("filter_min_z=" << filter.minZ);
+    nh.param<float>("filter_max_z", filter.maxZ, +0.0); ROS_INFO_STREAM("filter_max_z=" << filter.maxZ);
 
-    nh.param<bool>("use_ros_time", use_ros_time, false); 
+    nh.param<bool>("use_ros_time", use_ros_time, false); ROS_INFO_STREAM("use_ros_time=" << use_ros_time);
     nh.param<int>("timestamp_offset", ts_offset, 0); 
 
     ouster_ros::OSConfigSrv cfg{};
